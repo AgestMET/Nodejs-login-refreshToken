@@ -1,0 +1,17 @@
+init -y
+npm i dotenv@16.0.3 jsonwebtoken@9.0.0 express@4.18.2
+    jsonwebtoken -> jwt , dotenv -> ortam değişkenlerini(access ve refresh tokenler için oluşturulan secretlar) tutmayı sağlıyor
+npm i --save-dev nodemon
+package.json -> "dev": "nodemon index.js"
+package.json -> "type": "module"
+
+Access token için:
+    .env dosyası oluştur ve yeni bir terminal aç
+    Terminale node yazıp entera bas. Sonra " require('crypto').randomBytes(64).toString('hex'); " komutunu girerek
+        crypto paketini kullanarak 64 byte'lık, string biçiminde hex olarak bir secret elde et
+    Elde ettiğin secret'ı kopyalayıp .env dosyasının içerisine yapıştırıp ACCESS_TOKEN_SECRET isminde kaydet
+    Bu oluşturduğun secret'ı index.js'deki app.post("/login) yapısının içerisindeki 'const accessToken =' yapısındaki ilgili yerde kullan
+
+Refresh token için:
+    Aynı şekilde yeni açmış olduğun terminalde yine aynı komut ile yeni bir secret yaratıp .env dosyası içerisine REFRESH_TOKEN_SECRET isminde kaydet
+    Bu oluşturduğun secret'ı index.js'deki app.post("/login) yapısının içerisindeki 'const refreshToken =' yapısındaki ilgili yerde kullan
